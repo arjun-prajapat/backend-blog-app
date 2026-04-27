@@ -26,12 +26,6 @@ export class BlogsController {
     return this.blogsService.findAll(search, categorySlug);
   }
 
-  @Public()
-  @Get(':slug')
-  findOne(@Param('slug') slug: string) {
-    return this.blogsService.findOne(slug);
-  }
-
   @Patch(':id')
   update(
     @Param('id') id: string,
