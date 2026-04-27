@@ -7,11 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { Blog } from '../../blogs/entities/blog.entity';
-
-export enum Role {
-  USER = 'USER',
-  ADMIN = 'ADMIN',
-}
+import { Role } from 'src/enum/role.enum';
 
 @Entity()
 export class User {

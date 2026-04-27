@@ -4,7 +4,8 @@ import { Repository, ILike } from 'typeorm';
 import { Blog } from './entities/blog.entity';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
-import { User, Role } from '../users/entities/user.entity';
+import { User } from '../users/entities/user.entity';
+import { Role } from 'src/enum/role.enum';
 
 @Injectable()
 export class BlogsService {

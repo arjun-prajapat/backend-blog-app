@@ -22,4 +22,19 @@ export class UsersService {
     const newUser = this.usersRepository.create(user);
     return this.usersRepository.save(newUser);
   }
+
+  async findAll(): Promise<User[]> {
+    return this.usersRepository.find({
+      select: ['id', 'email', 'role', 'createdAt', 'updatedAt'],
+    });
+  }
+
+  async update(id: string, updateData: Partial<User>): Promise<User | null> {
+    await this.usersRepository.update(id, updateData);
+    return this.findOneById(id);
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.usersRepository.delete(id);
+  }
 }
