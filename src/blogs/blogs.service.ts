@@ -23,7 +23,7 @@ export class BlogsService {
       return await this.blogRepository.save(blog);
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('Blog slug already exists');
+        throw new ConflictException('Blog slug already exists - Reload');
       }
       throw error;
     }
@@ -91,7 +91,7 @@ export class BlogsService {
       return await this.blogRepository.save(blog);
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('Blog slug already exists');
+        throw new ConflictException('Blog slug already exists - Reload');
       }
       throw error;
     }
