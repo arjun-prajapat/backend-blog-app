@@ -13,6 +13,7 @@ async function bootstrap() {
   );
   app.enableCors({
     origin: [
+              "http://localhost:5173",
               "http://localhost:3000",
               "https://frontend-blog-app-seven.vercel.app",
             ],

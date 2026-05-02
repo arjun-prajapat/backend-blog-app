@@ -74,6 +74,26 @@ export class BlogsService {
     return blog;
   }
 
+  async findById(id: string): Promise<Blog> {
+    const blog = await this.blogRepository.findOne({
+      where: { id, isDeleted: false },
+      relations: ['author', 'category'],
+      select: {
+        author: {
+          id: true,
+          email: true,
+          role: true,
+        },
+      },
+    });
+
+    if (!blog) {
+      throw new NotFoundException(`Blog not found`);
+    }
+
+    return blog;
+  }
+
   async update(id: string, updateBlogDto: UpdateBlogDto, user: User): Promise<Blog> {
     const blog = await this.blogRepository.findOne({ where: { id, isDeleted: false } });
     
