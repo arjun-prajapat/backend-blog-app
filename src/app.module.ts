@@ -21,9 +21,18 @@ import { Blog } from './blogs/entities/blog.entity';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-        url: configService.get<string>('DATABASE_URL'),
+        
+        // --- Supabase Connection ---
+        // url: configService.get<string>('DATABASE_URL'),
+
+        // --- Local Postgres Connection ---
+        host: configService.get<string>('DB_HOST'),
+        port: configService.get<number>('DB_PORT'),
+        username: configService.get<string>('DB_USERNAME'),
+        password: configService.get<string>('DB_PASSWORD'),
+        database: configService.get<string>('DB_NAME'),
+        synchronize: configService.get<string>('DB_SYNC') === 'true',
         entities: [User, Category, Blog],
-        synchronize: true, // For development only! Use migrations in production.
       }),
     }),
     UsersModule,
